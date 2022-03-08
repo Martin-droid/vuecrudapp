@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ProductsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,5 +28,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function(){
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::resource('productos', ProductoController::class)
+Route::resource('products', ProductsController::class)
     ->middleware(['auth:sanctum', 'verified']);

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Producto;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
 
-class ProductoController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-         $productos = Producto::all();
-         return  Inertia::render('Mostrar', ['productos'=>$productos]);
+         $products = Product::all();
+         return  Inertia::render('Show', ['products'=>$products]);
     }
 
     /**
@@ -27,7 +27,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return Inertia::render('FormCrear');
+        return Inertia::render('FormCreate');
     }
 
     /**
@@ -39,21 +39,21 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'descripcion' => 'required',
-            'precio' => 'required'
+            'description' => 'required',
+            'price' => 'required'
         ]);
         
-        Producto::create($request->all());
-        return Redirect::route('productos.index');
+        Product::create($request->all());
+        return Redirect::route('products.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Producto  $producto
+     * @param  \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
+    public function show(Product $product)
     {
         //
     }
@@ -61,36 +61,36 @@ class ProductoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Producto  $producto
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit(Product $product)
     {
-        return Inertia::render('FormEditar', ['producto' => $producto]);
+        return Inertia::render('FormEditor', ['product' => $product]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Producto  $producto
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, Product $product)
     {
-        $producto->update($request->all());
-        return Redirect::route('productos.index');
+        $product->update($request->all());
+        return Redirect::route('products.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Producto  $producto
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy(Product $product)
     {
-        $producto->delete();
-        return Redirect::route('productos.index');
+        $product->delete();
+        return Redirect::route('products.index');
     }
 }
